@@ -1,0 +1,54 @@
+<html>
+<head>
+    <title>Kalkulator</title>
+<script>
+
+
+
+function kalkulator() {
+    
+    var unos = document.getElementById("datum").value;
+    var datum = new Date(unos);
+    
+   
+    var mdate = unos.toString();
+    var datumGod = parseInt(mdate.substring(0,4), 10);
+    var datumMj = parseInt(mdate.substring(5,7), 10);
+    var datumDan = parseInt(mdate.substring(8,10), 10);
+    
+    
+    var danas = new Date();
+    
+    
+    var datumrodjenja = new Date(datumGod, datumMj-1, datumDan);
+    
+    
+    var milisekunde = danas.valueOf() - datumrodjenja.valueOf();
+
+    var godine = Math.floor(milisekunde / 31536000000);
+    var dani = Math.floor((milisekunde % 31536000000) / 86400000);
+
+    
+        
+     var mjeseci = Math.floor(dani/30);        
+     dani = dani % 30;
+        
+     var tMj= (mjeseci + (godine*12));
+     var tDani =(tMj*30) + dani;
+     
+        document.getElementById("rezultat").innerHTML = godine + " godine " + mjeseci + " mjeseci " + dani + " dana"
+      
+   }
+
+</script>
+</head>
+<body>
+     
+  
+    <b> Unijeti datum rodjenja: <input type=date id = "datum">  </b>  
+    <button onclick="kalkulator()"> Saberi</button> 
+    <p id="rezultat"></p>  
+</body>
+</html>
+
+ 
